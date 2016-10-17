@@ -3,9 +3,10 @@ $(window).load(function(){
 	document.addEventListener("backbutton", handleBackButtonAndroid, false);
 });
 
+
+//use for console logging to a div
+//<div id="con" style="position:absolute; width:100%; height:150px; top:450px; left:0; overflow-y:scroll; z-index:10000; border:1px solid red"></div>
 /*
-use for console logging to a div
-<div id="con" style="position:absolute; width:100%; height:200px; top:300px; left:0; overflow-y:scroll"></div>
 console.log = (function (old_function, div_log) { 
     return function (text) {
         old_function(text);
@@ -24,6 +25,7 @@ var SVGpacks = [];
 var OKtoplay = [];
 litefull();
 function litefull(){
+	console.log("litefull "+full);
 	if(!full){
 		SVGpacks = [PACK0, PACK1, PACK2, PACK3, PACK4, PACK5];
 		OKtoplay = ["true", "false", "false", "false", "false", "false"];
@@ -127,6 +129,7 @@ var sounds = s_beeps.slice();
 var usedsounds = [];
 
 function preloadSounds(){
+	console.log("preloadSounds");
 	if( window.plugins && window.plugins.NativeAudio ) {
 		window.plugins.NativeAudio.preloadSimple( 's_start', "sounds/music_vibelong_note_lo.mp3", function(){}, function(){});
 		window.plugins.NativeAudio.preloadSimple( 's_btn', "sounds/click_enter2.mp3", function(){}, function(){});
@@ -291,6 +294,7 @@ function getStorage(){
 				updateData();
 			}else{
 				console.log('doesnt exist...');
+				tmpDATA = appData;
 				setStorage(appData);
 			}
 		})
@@ -306,14 +310,14 @@ function setStorage(v){
 		})
 		.then(function(value){
 			console.log('saved!')
-			updateData(value);
+			updateData();
 		})
 		.catch(function(err){
 			console.log('error!')
-			console.log(err)
+			console.log(JSON.stringify( err ))
 		})
 }
-function updateData(v){
+function updateData(){
 	console.log('latest: ');
 	console.log(JSON.stringify( tmpDATA ));
 	if(!appSet){
@@ -381,6 +385,7 @@ MAIN APP
 
 */
 function main(){
+	console.log("MAIN");
 	//removes click delay on ios
 	var attachFastClick = Origami.fastclick;
 	attachFastClick(document.body);
@@ -486,12 +491,14 @@ function main(){
 	$('.options-btn').click(function(){
 		currNav = "settings";
 		playS(s_btn);
-		$('#options').fadeIn('fast');
+		//$('#options').fadeIn('fast');
+		$('#options').show();
 	})
 	$('#options-back .btn').click(function(){
 		currNav = "home";
 		playS(s_back);
-		$('#options').fadeOut('fast');
+		//$('#options').fadeOut('fast');
+		$('#options').hide();
 	})
 	
 	$('.audio div').click(function(){
@@ -590,12 +597,14 @@ function main(){
 	$('.purchase-btn').click(function(){
 		currNav = "purchase";
 		playS(s_btn);
-		$('#purchase').fadeIn('fast');
+		//$('#purchase').fadeIn('fast');
+		$('#purchase').show();
 	})
 	$('#purchase-back .btn').click(function(){
 		currNav = "home";
 		playS(s_back);
-		$('#purchase').fadeOut('fast');
+		$('#purchase').hide();
+		//$('#purchase').fadeOut('fast');
 		/*$('#purchase').fadeOut('fast', function(){
 			$('#purchase .samples').empty();
 		});*/
