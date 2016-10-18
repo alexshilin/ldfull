@@ -630,7 +630,7 @@ function main(){
 			var s = SVGpacks[i].items || null;
 			if(s!=null){
 				var allow = OKtoplay[i] == "true" ? "unlocked" : "";
-				var $packbox = $("<div>", {"class":"row", "style":"width:100%; background:#d21566; padding: 10px 0; margin:0 0 10px 0"})
+				var $packbox = $("<div>", {"class":"row samples-row"})
 				$(".samples").append($packbox);
 				var $pack = $("<div>", {"class": "row sample-row", "style":"margin:0 auto; width:100%;"});
 				$packbox.append($pack);
