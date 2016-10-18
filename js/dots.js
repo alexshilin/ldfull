@@ -396,6 +396,10 @@ function main(){
 	var wrongs = 0;
 	var scalediff = 1;
 	
+	if(document.documentElement.clientWidth>1400){
+		SETTINGS.dotscale = {min:0.3, mid:0.5, max:.7};
+	}
+	
 	document.addEventListener("dotSetup", startDots);
 	document.addEventListener("dotReady", nextDot);
 	document.addEventListener("dotsDone", function(){$('#next').show();});
@@ -471,7 +475,7 @@ function main(){
 		$('.level').css('color',SETTINGS.theme.stroke);
 		
 		$('#next').removeClass('blink').css({'top':'0px'});
-		$('#nextbig').css({'bottom':'-100px'})
+		$('#nextbig').css({'bottom':'-150px'})
 		$('#settings, #options, #gallery, #dots').hide();
 		
 		$('#gate').fadeIn();
@@ -617,10 +621,10 @@ function main(){
 				var allow = OKtoplay[i] == "true" ? "unlocked" : "";
 				var $packbox = $("<div>", {"class":"row", "style":"width:100%; background:#d21566; padding: 10px 0; margin:0 0 10px 0"})
 				$(".samples").append($packbox);
-				var $pack = $("<div>", {"class": "row", "style":"margin:0 auto; width:100%; max-width:600px;"});
+				var $pack = $("<div>", {"class": "row sample-row", "style":"margin:0 auto; width:100%;"});
 				$packbox.append($pack);
 				var txt = OKtoplay[i] == "true" ? "" : "color:#37cd82";
-				var $header = $("<div>", {"class":"row", "style":"color:white; font-size:14px; font-weight:bold; "+txt});
+				var $header = $("<div>", {"class":"row purchase-name", "style":"color:white; "+txt});
 				$header.html(SVGpacks[i].name);
 				$pack.append($header);
 				for(var k=0; k<s.length; k++){
@@ -899,7 +903,7 @@ function main(){
 				hideDots();
 				$('#hint').hide();
 				//$('#next').addClass('blink');
-				$('#next').delay(2500).animate({'top':'-50px'}, 400, function(){
+				$('#next').delay(1400).animate({'top':'-100px'}, 300, function(){
 					$('#nextbig').animate({'bottom':'20px'}, 500)
 				})
 				$("#hello").lazylinepainter('resume');	
