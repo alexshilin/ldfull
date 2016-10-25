@@ -416,7 +416,7 @@ function main(){
 	document.addEventListener("dotsDone", function(){$('#next').show();});
 	
 	////////// CLICK LOGO 5 TIMES TO CLEAR LOCAL STORAGE ////////
-	var clickcnt = 0;
+	/*var clickcnt = 0;
 	$('.logo').click(function(){
 		if(clickcnt<5){clickcnt++;}
 		if(clickcnt==5){
@@ -429,7 +429,7 @@ function main(){
 			});
 		}
 		setTimeout(function(){clickcnt=0}, 1000);
-	})
+	})*/
 	//////////
 	
 	$('.dottype div').on('click', function(){
